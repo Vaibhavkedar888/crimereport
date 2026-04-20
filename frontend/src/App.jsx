@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Landing from './pages/Landing';
@@ -28,7 +28,7 @@ const ProtectedRoute = ({ children, requiredRole }) => {
 function App() {
     return (
         <AuthProvider>
-            <BrowserRouter>
+            <Router>
                 <div className="app-container">
                     <Navbar />
                     <Routes>
@@ -47,7 +47,7 @@ function App() {
                         } />
                     </Routes>
                 </div>
-            </BrowserRouter>
+            </Router>
         </AuthProvider>
     );
 }
