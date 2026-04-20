@@ -1,0 +1,27 @@
+# Target folders
+**/target/
+**/node_modules/
+**/dist/
+**/build/
+
+# Uploads folder (Evidence files)
+**/uploads/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Maven artifacts
+.mvn/wrapper/maven-wrapper.jar
+
+# OS files
+.DS_Store
+Thumbs.db
