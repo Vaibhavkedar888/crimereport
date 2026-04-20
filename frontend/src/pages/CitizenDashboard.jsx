@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import api from '../api/axiosConfig';
 import { AuthContext } from '../context/AuthContext';
 
 const CitizenDashboard = () => {
@@ -22,7 +22,7 @@ const CitizenDashboard = () => {
 
     const fetchReports = async () => {
         try {
-            const res = await axios.get(`http://localhost:8080/api/reports/user/${user.id}`);
+            const res = await api.get(`/reports/user/${user.id}`);
             setReports(res.data);
         } catch (error) {
             console.error("Failed to fetch reports", error);
@@ -52,7 +52,7 @@ const CitizenDashboard = () => {
         }
 
         try {
-            await axios.post('http://localhost:8080/api/reports', formData, {
+            await api.post('/reports', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

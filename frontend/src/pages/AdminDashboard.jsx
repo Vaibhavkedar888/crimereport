@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import api from '../api/axiosConfig';
 import { AuthContext } from '../context/AuthContext';
 
 const AdminDashboard = () => {
@@ -14,7 +14,7 @@ const AdminDashboard = () => {
 
     const fetchReports = async () => {
         try {
-            const res = await axios.get('http://localhost:8080/api/reports');
+            const res = await api.get('/reports');
             setReports(res.data);
         } catch (error) {
             console.error("Failed to fetch reports", error);
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
 
     const updateStatus = async (reportId, newStatus) => {
         try {
-            await axios.put(`http://localhost:8080/api/reports/${reportId}/status`, { status: newStatus });
+            await api.put(`/reports/${reportId}/status`, { status: newStatus });
             setReports(reports.map(r => r.id === reportId ? { ...r, status: newStatus } : r));
         } catch (error) {
             console.error("Failed to update status", error);
