@@ -43,7 +43,11 @@ This guide explains how to deploy the **Backend** (Spring Boot) and **Frontend**
    - **Publish Directory**: `dist`
 5. **Environment Variables**:
    - `VITE_API_URL`: Your Backend URL + `/api` (e.g., `https://smart-crime-backend.onrender.com/api`).
-6. **Deployment**: Click Create Static Site.
+6. **Redirects/Rewrites (CRITICAL for React Router)**:
+   - Go to the **Redirects/Rewrites** tab.
+   - Add a rule: `Source: /*`, `Destination: /index.html`, `Action: Rewrite`.
+   - This prevents 404 errors when refreshing the page.
+7. **Deployment**: Click Create Static Site.
 
 ---
 
