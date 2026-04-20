@@ -13,10 +13,17 @@ public class BackendApplication {
         SpringApplication.run(BackendApplication.class, args);
     }
 
+    @org.springframework.beans.factory.annotation.Value("${spring.data.mongodb.uri:NOT_FOUND}")
+    private String mongoUri;
+
     @Bean
     CommandLineRunner init(FilesStorageService storageService) {
         return (args) -> {
             storageService.init();
+            System.out.println(">>> STARTUP DEBUG: MongoDB URI found: " + (mongoUri.contains("@") ? "REDACTED" : mongoUri));
+            if (mongoUri.equals("NOT_FOUND") || mongoUri.contains("localhost")) {
+                System.out.println(">>> WARNING: App is still using localhost. Check Render Environment Variables!");
+            }
         };
     }
 }
