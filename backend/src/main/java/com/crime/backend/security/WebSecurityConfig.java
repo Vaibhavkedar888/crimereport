@@ -49,29 +49,16 @@ public class WebSecurityConfig {
     @org.springframework.beans.factory.annotation.Value("${FRONTEND_URL:http://localhost:5173}")
     private String frontendUrl;
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        
-        // Allow the specific frontend URL from environment AND common development origins
-        configuration.setAllowedOrigins(Arrays.asList(
+        // Allow specific origins and any onrender.com subdomains
+        configuration.setAllowedOriginPatterns(Arrays.asList(
             frontendUrl, 
             "http://localhost:5173", 
-            "http://localhost:3000",
-            "https://smart-crime-report.onrender.com" // Explicitly adding for safety
+            "https://*.onrender.com"
         ));
         
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-        configuration.setAllowedHeaders(Arrays.asList(
-            "Authorization", 
-            "Content-Type", 
-            "Accept", 
-            "X-Requested-With", 
-            "Origin", 
-            "Access-Control-Request-Method", 
-            "Access-Control-Request-Headers"
-        ));
-        configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
+        configuration.setAllowedHeaders(Arrays.asList("*")); // Allow all headers in production to prevent preflight blocks
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
         
