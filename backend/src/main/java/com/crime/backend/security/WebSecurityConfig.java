@@ -49,6 +49,9 @@ public class WebSecurityConfig {
     @org.springframework.beans.factory.annotation.Value("${FRONTEND_URL:http://localhost:5173}")
     private String frontendUrl;
 
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
         // Allow specific origins and any onrender.com subdomains
         configuration.setAllowedOriginPatterns(Arrays.asList(
             frontendUrl, 
