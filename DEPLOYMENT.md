@@ -21,9 +21,8 @@ This guide explains how to deploy the **Backend** (Spring Boot) and **Frontend**
 4. **Settings**:
    - **Name**: `smart-crime-backend`
    - **Root Directory**: `backend`
-   - **Environment**: `Docker` (or `Maven` if you prefer).
-   - **Build Command**: `mvn clean package -DskipTests`
-   - **Start Command**: `java -jar target/*.jar`
+   - **Environment**: `Docker`
+   - **Dockerfile Path**: `Dockerfile` (Since it is inside the `backend` root)
    - **Plan**: Free.
 5. **Environment Variables**:
    - `MONGODB_URI`: Your MongoDB Atlas connection string.
