@@ -10,6 +10,11 @@ import org.springframework.context.annotation.Bean;
 public class BackendApplication {
 
     public static void main(String[] args) {
+        String mongoUri = System.getenv("SPRING_DATA_MONGODB_URI");
+        if (mongoUri != null && !mongoUri.isEmpty()) {
+            System.setProperty("spring.data.mongodb.uri", mongoUri);
+            System.out.println(">>> AUTO-CONFIG: Force-set spring.data.mongodb.uri from Environment.");
+        }
         SpringApplication.run(BackendApplication.class, args);
     }
 
