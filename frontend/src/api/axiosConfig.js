@@ -15,6 +15,7 @@ api.interceptors.request.use(
                 config.headers['Authorization'] = `Bearer ${user.token}`;
             }
         }
+        console.log(">>> AXIOS DEBUG: Requesting to: " + config.baseURL + config.url);
         return config;
     },
     (error) => {
