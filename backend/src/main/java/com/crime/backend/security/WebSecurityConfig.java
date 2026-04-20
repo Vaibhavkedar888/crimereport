@@ -52,11 +52,11 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Allow specific origins and any onrender.com subdomains
+        // Fully permissive origins for Render subdomains to eliminate CORS 403s
         configuration.setAllowedOriginPatterns(Arrays.asList(
-            frontendUrl, 
-            "http://localhost:5173", 
-            "https://*.onrender.com"
+            "*",
+            "https://*.onrender.com",
+            "http://localhost:5173"
         ));
         
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
